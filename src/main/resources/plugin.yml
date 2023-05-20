@@ -1,0 +1,4 @@
+name: TownyExternal
+version: '${project.version}'
+main: me.orchidmc.townyexternal.TownyExternal
+depend: ['Towny']

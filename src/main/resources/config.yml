@@ -1,0 +1,8 @@
+#
+#    Towny External
+#    config.yml
+#
+
+# The port that should be used for the webserver.
+# ex. 8080
+port: 25570
