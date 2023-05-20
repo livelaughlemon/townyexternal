@@ -28,6 +28,10 @@ public final class TownyExternal extends JavaPlugin {
         FileConfiguration config = this.getConfig();
 
         int startPort = config.getInt("port");
+        boolean townsEnabled = config.getBoolean("enable-towns");
+        boolean nationsEnabled = config.getBoolean("enable-nations");
+        boolean residentsEnabled = config.getBoolean("enable-residents");
+
 
         int pluginId = 18403;
         Metrics metrics = new Metrics(this, pluginId);
@@ -42,16 +46,24 @@ public final class TownyExternal extends JavaPlugin {
         }
         server.createContext("/", new CallingForNothing());
 
-        // Town endpoints
-        server.createContext("/town", new CallForTown());
-        server.createContext("/towns", new CallForTownList());
-        // Nation endpoints
-        server.createContext("/nation", new CallForNation());
-        server.createContext("/nations", new CallForNationList());
-        // Resident endpoints
-        server.createContext("/resident", new CallForResident());
-        server.createContext("/residents", new CallForResidentList());
-
+        if (townsEnabled) {
+            // Town endpoints
+            server.createContext("/town", new CallForTown());
+            server.createContext("/towns", new CallForTownList());
+            Bukkit.getLogger().info("[TownyExternal] Endpoints for towns enabled by config.");
+        }
+        if (nationsEnabled) {
+            // Nation endpoints
+            server.createContext("/nation", new CallForNation());
+            server.createContext("/nations", new CallForNationList());
+            Bukkit.getLogger().info("[TownyExternal] Endpoints for nations enabled by config.");
+        }
+        if (residentsEnabled) {
+            // Resident endpoints
+            server.createContext("/resident", new CallForResident());
+            server.createContext("/residents", new CallForResidentList());
+            Bukkit.getLogger().info("[TownyExternal] Endpoints for residents enabled by config.");
+        }
         server.setExecutor(null); // creates a default executor
         server.start();
     }

@@ -6,3 +6,15 @@
 # The port that should be used for the webserver.
 # ex. 8080
 port: 25570
+
+# Should towns be able to be fetched through the API?
+# ex. true
+enable-towns: true
+
+# Should nations be able to be fetched through the API?
+# ex. true
+enable-nations: true
+
+# Should residents be able to be fetched through the API?
+# ex. true
+enable-residents: true
