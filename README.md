@@ -5,7 +5,7 @@ Ever wanted to view Towny data from outside your server with an API? Look no fur
 
 **[Discord Support Server](https://discord.gg/84TZGRkXy6)**
 
-**[Wiki]([https://docs.orchidmc.me/dev/minecraft-plugins/towny-external)**
+**[Wiki](https://docs.orchidmc.me/dev/minecraft-plugins/towny-external)**
 
 ## Compiling
 
