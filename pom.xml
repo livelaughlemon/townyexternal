@@ -6,7 +6,7 @@
 
     <groupId>me.orchidmc</groupId>
     <artifactId>TownyExternal</artifactId>
-    <version>1.1.2</version>
+    <version>1.2.0</version>
     <packaging>jar</packaging>
 
     <name>TownyExternal</name>

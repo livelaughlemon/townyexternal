@@ -72,6 +72,7 @@ public final class TownyExternal extends JavaPlugin {
         @Override
         public void handle(HttpExchange t) throws IOException {
             String response = "{\"response\":\"200\"}";
+            t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
             t.getResponseHeaders().set("Content-Type", "application/json");
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
@@ -88,6 +89,7 @@ public final class TownyExternal extends JavaPlugin {
             townnamefromurl = townnamefromurl.replace("/town", "");
             if (townnamefromurl.length() == 0 || townnamefromurl.equals("/")) {
                 String response = "{\"response\":\"404\"}";
+                t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
                 t.getResponseHeaders().set("Content-Type", "application/json");
                 t.sendResponseHeaders(404, response.length());
                 OutputStream os = t.getResponseBody();
@@ -103,7 +105,7 @@ public final class TownyExternal extends JavaPlugin {
                 if (town.hasNation()) {
                     String nationpart = "{\"name\":\""+ Objects.requireNonNull(town.getNationOrNull()).getName()+"\"}";
                     String response = "{\"response\":\"200\",\"name\":{\"raw\":\"" + town.getName() + "\",\"formatted\":\"" + town.getFormattedName() + "\"},\"board\":\"" + town.getBoard() + "\",\"tag\":\"" + town.getTag() + "\",\"founder\":\"" + town.getFounder() + "\",\"mayor\":\"" + town.getMayor() + "\",\"nation\":" + nationpart + ",\"residents\":\"" + town.getResidents() + "\",\"outlaws\":\"" + town.getOutlaws() + "\"}";
-
+                    t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
                     t.getResponseHeaders().set("Content-Type", "application/json");
                     t.sendResponseHeaders(200, response.length());
                     OutputStream os = t.getResponseBody();
@@ -113,7 +115,7 @@ public final class TownyExternal extends JavaPlugin {
                 } else {
                     String nationpart = "\"\"";
                     String response = "{\"response\":\"200\",\"name\":{\"raw\":\"" + town.getName() + "\",\"formatted\":\"" + town.getFormattedName() + "\"},\"board\":\"" + town.getBoard() + "\",\"tag\":\"" + town.getTag() + "\",\"founder\":\"" + town.getFounder() + "\",\"mayor\":\"" + town.getMayor() + "\",\"nation\":" + nationpart + ",\"residents\":\"" + town.getResidents() + "\",\"outlaws\":\"" + town.getOutlaws() + "\"}";
-
+                    t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
                     t.getResponseHeaders().set("Content-Type", "application/json");
                     t.sendResponseHeaders(200, response.length());
                     OutputStream os = t.getResponseBody();
@@ -133,6 +135,7 @@ public final class TownyExternal extends JavaPlugin {
             Bukkit.getLogger().info("[TownyExternal] List of all towns was requested via the API.");
 
             String response = "{\"response\":\"200\",\"towns\":\""+TownyAPI.getInstance().getTowns()+"\"}";
+            t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
             t.getResponseHeaders().set("Content-Type", "application/json");
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
@@ -150,6 +153,7 @@ public final class TownyExternal extends JavaPlugin {
             nationnamefromurl = nationnamefromurl.replace("/nation", "");
             if (nationnamefromurl.length() == 0 || nationnamefromurl.equals("/")) {
                 String response = "{\"response\":\"404\"}";
+                t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
                 t.getResponseHeaders().set("Content-Type", "application/json");
                 t.sendResponseHeaders(404, response.length());
                 OutputStream os = t.getResponseBody();
@@ -163,7 +167,7 @@ public final class TownyExternal extends JavaPlugin {
                 Bukkit.getLogger().info("[TownyExternal] " + nationnamefromurl + " was requested via the API.");
 
                 String response = "{\"response\":\"200\",\"name\":{\"raw\":\""+nation.getName()+"\",\"raw\":\""+nation.getFormattedName()+"\"},\"board\":\""+nation.getBoard()+"\",\"tag\":\""+nation.getTag()+"\",\"king\":\""+nation.getKing()+"\",\"assistants\":\""+nation.getAssistants()+"\",\"capital\":\""+nation.getCapital()+"\",\"towns\":\""+nation.getTowns()+"\",\"residents\":\""+nation.getResidents()+"\",\"allies\":\""+nation.getAllies()+"\",\"enemies\":\""+nation.getEnemies()+"\",\"outlaws\":\""+nation.getOutlaws()+"\"}";
-
+                t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
                 t.getResponseHeaders().set("Content-Type", "application/json");
                 t.sendResponseHeaders(200, response.length());
                 OutputStream os = t.getResponseBody();
@@ -181,6 +185,7 @@ public final class TownyExternal extends JavaPlugin {
             Bukkit.getLogger().info("[TownyExternal] List of all nations was requested via the API.");
 
             String response = "{\"response\":\"200\",\"nations\":\""+TownyAPI.getInstance().getNations()+"\"}";
+            t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
             t.getResponseHeaders().set("Content-Type", "application/json");
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
@@ -198,6 +203,7 @@ public final class TownyExternal extends JavaPlugin {
             residentnamefromurl = residentnamefromurl.replace("/resident", "");
             if (residentnamefromurl.length() == 0 || residentnamefromurl.equals("/")) {
                 String response = "{\"response\":\"404\"}";
+                t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
                 t.getResponseHeaders().set("Content-Type", "application/json");
                 t.sendResponseHeaders(404, response.length());
                 OutputStream os = t.getResponseBody();
@@ -214,7 +220,7 @@ public final class TownyExternal extends JavaPlugin {
                     String townname = resident.getTownOrNull().getName();
                     String nationname = resident.getNationOrNull().getName();
                     String response = "{\"response\":\"200\",\"name\":{\"raw\":\""+resident.getName()+"\",\"formatted\":\""+resident.getFormattedName()+"\"},\"town\":\""+townname+"\",\"nation\":\""+nationname+"\",\"title\":\""+resident.getTitle()+"\",\"prefix\":\""+resident.getNamePrefix()+"\",\"postfix\":\""+resident.getNamePostfix()+"\",\"friends\":\""+resident.getFriends()+"\"}";
-
+                    t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
                     t.getResponseHeaders().set("Content-Type", "application/json");
                     t.sendResponseHeaders(200, response.length());
                     OutputStream os = t.getResponseBody();
@@ -224,7 +230,7 @@ public final class TownyExternal extends JavaPlugin {
                     String townname = "";
                     String nationname = resident.getNationOrNull().getName();
                     String response = "{\"response\":\"200\",\"name\":{\"raw\":\""+resident.getName()+"\",\"raw\":\""+resident.getFormattedName()+"\"},\"town\":\""+townname+"\",\"nation\":\""+nationname+"\",\"title\":\""+resident.getTitle()+"\",\"prefix\":\""+resident.getNamePrefix()+"\",\"postfix\":\""+resident.getNamePostfix()+"\",\"friends\":\""+resident.getFriends()+"\"}";
-
+                    t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
                     t.getResponseHeaders().set("Content-Type", "application/json");
                     t.sendResponseHeaders(200, response.length());
                     OutputStream os = t.getResponseBody();
@@ -234,7 +240,7 @@ public final class TownyExternal extends JavaPlugin {
                     String townname = resident.getTownOrNull().getName();
                     String nationname = "";
                     String response = "{\"response\":\"200\",\"name\":{\"raw\":\""+resident.getName()+"\",\"raw\":\""+resident.getFormattedName()+"\"},\"town\":\""+townname+"\",\"nation\":\""+nationname+"\",\"title\":\""+resident.getTitle()+"\",\"prefix\":\""+resident.getNamePrefix()+"\",\"postfix\":\""+resident.getNamePostfix()+"\",\"friends\":\""+resident.getFriends()+"\"}";
-
+                    t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
                     t.getResponseHeaders().set("Content-Type", "application/json");
                     t.sendResponseHeaders(200, response.length());
                     OutputStream os = t.getResponseBody();
@@ -244,7 +250,7 @@ public final class TownyExternal extends JavaPlugin {
                     String townname = "";
                     String nationname = "";
                     String response = "{\"response\":\"200\",\"name\":{\"raw\":\""+resident.getName()+"\",\"raw\":\""+resident.getFormattedName()+"\"},\"town\":\""+townname+"\",\"nation\":\""+nationname+"\",\"title\":\""+resident.getTitle()+"\",\"prefix\":\""+resident.getNamePrefix()+"\",\"postfix\":\""+resident.getNamePostfix()+"\",\"friends\":\""+resident.getFriends()+"\"}";
-
+                    t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
                     t.getResponseHeaders().set("Content-Type", "application/json");
                     t.sendResponseHeaders(200, response.length());
                     OutputStream os = t.getResponseBody();
@@ -262,7 +268,7 @@ public final class TownyExternal extends JavaPlugin {
         public void handle(HttpExchange t) throws IOException {
 
             Bukkit.getLogger().info("[TownyExternal] List of all residents was requested via the API.");
-
+            t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
             String response = "{\"response\":\"200\",\"residents\":\""+TownyAPI.getInstance().getResidents()+"\"}";
             t.getResponseHeaders().set("Content-Type", "application/json");
             t.sendResponseHeaders(200, response.length());
